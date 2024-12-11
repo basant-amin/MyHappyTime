@@ -11,7 +11,10 @@ struct MainPageView: View {
     @StateObject var scheduleViewModel = ScheduleViewModel()
     var body: some View {
         // Remove Text Adress And Write Your Content Here
-        Text("Main Page")
+        Text("اهلا")
+            .font(.custom("Cairo-Medium", size: 20))
+        
+        
         
     }
 }
