@@ -10,9 +10,10 @@ import Foundation
 class ScheduleViewModel: ObservableObject {
     @Published var schedule: [ScheduleItem] = []
     @Published var categories: [Category] = [
+  
         Category(
             id: UUID(),
-            name: "Food",
+            name: "روتين يومي",
             image: "food",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
@@ -22,22 +23,82 @@ class ScheduleViewModel: ObservableObject {
         ),
         Category(
             id: UUID(),
-            name: "Wearing",
-            image: "wearing",
+            name: "رحلات",
+            image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Shirt", image: "shirt"),
-                ScheduleItem(id: UUID(), name: "Pants", image: "pants"),
-                ScheduleItem(id: UUID(), name: "Shoes", image: "shoes")
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
             ]
         ),
         Category(
             id: UUID(),
-            name: "Personal",
-            image: "personal",
+            name: "اشخاص",
+            image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Brush Teeth", image: "toothbrush"),
-                ScheduleItem(id: UUID(), name: "Wash Face", image: "wash"),
-                ScheduleItem(id: UUID(), name: "Hair Comb", image: "comb")
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "النظافة الشخصية",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "حيوانات",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "وجبات",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "مرافق عامة",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "مواصلات",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+            ]
+        ),
+        Category(
+            id: UUID(),
+            name: "ملابس",
+            image: "food",
+            items: [
+                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
+                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
+                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
             ]
         )
     ]
