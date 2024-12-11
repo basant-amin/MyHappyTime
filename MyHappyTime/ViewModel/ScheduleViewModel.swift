@@ -16,9 +16,10 @@ class ScheduleViewModel: ObservableObject {
             name: "روتين يومي",
             image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+                ScheduleItem(id: UUID(), name: "قيلولة", image: "routin1"),
+                ScheduleItem(id: UUID(), name: "يستقيظ", image: "routin2"),
+                ScheduleItem(id: UUID(), name: "نوم", image: "routin3"),
+                ScheduleItem(id: UUID(), name: "سرير", image: "routin4")
             ]
         ),
         Category(
@@ -26,29 +27,28 @@ class ScheduleViewModel: ObservableObject {
             name: "رحلات",
             image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+                ScheduleItem(id: UUID(), name: "رحلة", image: "trip1"),
+                ScheduleItem(id: UUID(), name: "تخييم", image: "trip2"),
+                ScheduleItem(id: UUID(), name: "حديقة", image: "trip3"),
+                ScheduleItem(id: UUID(), name: "مصيف", image: "trip4"),
+                ScheduleItem(id: UUID(), name: "ملاهي", image: "trip5"),
+                ScheduleItem(id: UUID(), name: "مطعم", image: "trip6")
+
             ]
         ),
-        Category(
-            id: UUID(),
-            name: "اشخاص",
-            image: "food",
-            items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
-            ]
-        ),
+
         Category(
             id: UUID(),
             name: "النظافة الشخصية",
             image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+                ScheduleItem(id: UUID(), name: "استحمام", image: "clean1"),
+                ScheduleItem(id: UUID(), name: "تمشيط", image: "clean2"),
+                ScheduleItem(id: UUID(), name: "غسل اسنان", image: "clean3"),
+                ScheduleItem(id: UUID(), name: "غسل اليدين", image: "clean4"),
+                ScheduleItem(id: UUID(), name: "قص اظافر", image: "clean5"),
+                ScheduleItem(id: UUID(), name: "ارمي القمامه", image: "clean6"),
+             
             ]
         ),
         Category(
@@ -66,9 +66,16 @@ class ScheduleViewModel: ObservableObject {
             name: "وجبات",
             image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+                ScheduleItem(id: UUID(), name: "طائر", image: "animal1"),
+                ScheduleItem(id: UUID(), name: "جمل", image: "animal2"),
+                ScheduleItem(id: UUID(), name: "قطه", image: "animal3"),
+                ScheduleItem(id: UUID(), name: "دجاجة", image: "animal4"),
+                ScheduleItem(id: UUID(), name: "بقرة", image: "animal5"),
+                ScheduleItem(id: UUID(), name: "سمكة", image: "animal6"),
+                ScheduleItem(id: UUID(), name: "حصان", image: "animal7"),
+                ScheduleItem(id: UUID(), name: "كوالا", image: "animal8"),
+                ScheduleItem(id: UUID(), name: "حمامه", image: "animal9"),
+                ScheduleItem(id: UUID(), name: "خروف", image: "dinner10")
             ]
         ),
         Category(
@@ -76,9 +83,11 @@ class ScheduleViewModel: ObservableObject {
             name: "مرافق عامة",
             image: "food",
             items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
+                ScheduleItem(id: UUID(), name: "نادي", image: "facilities1"),
+                ScheduleItem(id: UUID(), name: "سوبرماركت", image: "facilities2"),
+                ScheduleItem(id: UUID(), name: "مدرسة", image: "facilities3"),
+                ScheduleItem(id: UUID(), name: "سوق", image: "facilities4"),
+                ScheduleItem(id: UUID(), name: "مستشفى", image: "facilities5")
             ]
         ),
         Category(
