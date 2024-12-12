@@ -40,7 +40,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "النظافة الشخصية",
-            image: "food",
+            image: "booth",
             items: [
                 ScheduleItem(id: UUID(), name: "استحمام", image: "clean1"),
                 ScheduleItem(id: UUID(), name: "تمشيط", image: "clean2"),
@@ -54,7 +54,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "حيوانات",
-            image: "food",
+            image: "cuts",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
                 ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
@@ -64,7 +64,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "وجبات",
-            image: "food",
+            image: "brunch",
             items: [
                 ScheduleItem(id: UUID(), name: "طائر", image: "animal1"),
                 ScheduleItem(id: UUID(), name: "جمل", image: "animal2"),
@@ -81,7 +81,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "مرافق عامة",
-            image: "food",
+            image: "friends",
             items: [
                 ScheduleItem(id: UUID(), name: "نادي", image: "facilities1"),
                 ScheduleItem(id: UUID(), name: "سوبرماركت", image: "facilities2"),
@@ -93,7 +93,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "مواصلات",
-            image: "food",
+            image: "cars",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
                 ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
@@ -103,7 +103,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "ملابس",
-            image: "food",
+            image: "cloth",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
                 ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
