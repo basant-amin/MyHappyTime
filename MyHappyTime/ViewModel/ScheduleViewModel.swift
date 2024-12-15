@@ -40,7 +40,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "النظافة الشخصية",
-            image: "food",
+            image: "booth",
             items: [
                 ScheduleItem(id: UUID(), name: "استحمام", image: "clean1"),
                 ScheduleItem(id: UUID(), name: "تمشيط", image: "clean2"),
@@ -54,7 +54,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "حيوانات",
-            image: "food",
+            image: "cuts",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
                 ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
@@ -64,7 +64,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "وجبات",
-            image: "food",
+            image: "brunch",
             items: [
                 ScheduleItem(id: UUID(), name: "طائر", image: "animal1"),
                 ScheduleItem(id: UUID(), name: "جمل", image: "animal2"),
@@ -81,7 +81,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "مرافق عامة",
-            image: "food",
+            image: "friends",
             items: [
                 ScheduleItem(id: UUID(), name: "نادي", image: "facilities1"),
                 ScheduleItem(id: UUID(), name: "سوبرماركت", image: "facilities2"),
@@ -93,7 +93,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "مواصلات",
-            image: "food",
+            image: "cars",
             items: [
                 ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
                 ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
@@ -101,15 +101,22 @@ class ScheduleViewModel: ObservableObject {
             ]
         ),
         Category(
-            id: UUID(),
-            name: "ملابس",
-            image: "food",
-            items: [
-                ScheduleItem(id: UUID(), name: "Breakfast", image: "breakfast"),
-                ScheduleItem(id: UUID(), name: "Lunch", image: "lunch"),
-                ScheduleItem(id: UUID(), name: "Dinner", image: "dinner")
-            ]
-        )
+                    id: UUID(),
+                    name: "ملابس",
+                    image: "cloth",
+                    items: [
+                        ScheduleItem(id: UUID(), name: "اغلق ازرار القميص", image: "dress1"),
+                        ScheduleItem(id: UUID(), name: "ارتداء المعطف", image: "dress2"),
+                        ScheduleItem(id: UUID(), name: "ارتداء القميص", image: "dress3"),
+                        ScheduleItem(id: UUID(), name: "اخلع القميص", image: "dress4"),
+                        ScheduleItem(id: UUID(), name: "ارتداء فستان", image: "dress5"),
+                        ScheduleItem(id: UUID(), name: "ارتداء جورب", image: "dress6"),
+                        ScheduleItem(id: UUID(), name: "ارتداء لبس المدرسة", image: "dress7"),
+                        ScheduleItem(id: UUID(), name: "ارتداء حذائك", image: "dress9")
+
+                        
+                    ]
+                )
     ]
     
     func addCategory(name: String, imageName: String, items: [ScheduleItem] = []) {
@@ -130,6 +137,7 @@ class ScheduleViewModel: ObservableObject {
         let newItem = ScheduleItem(id: UUID(), name: itemName, image: imageName)
         categories[index].items.append(newItem)
     }
+
 
 }
 

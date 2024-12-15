@@ -12,6 +12,9 @@ struct CategoryPageView: View {
     var body: some View {
         // Remove Text Hello World And Write Your Content Here
         Text("Category Page")
+     
+     
+       
       
         
     }
