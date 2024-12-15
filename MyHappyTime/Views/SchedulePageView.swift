@@ -17,7 +17,7 @@ struct SchedulePageView: View {
                 
                 
    VStack {
-       Text("عرض الجدول")
+       Text(" الجدول")
            .font(.custom("Cairo-Medium", size: 25))
            Divider()
            .background(Color.sgreen)
