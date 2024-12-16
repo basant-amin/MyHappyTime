@@ -26,4 +26,5 @@ class Category: Identifiable {
         self.image = image
         self.items = items
     }
+    
 }
