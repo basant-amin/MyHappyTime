@@ -6,9 +6,11 @@
 //
 
 import Foundation
-
+import PhotosUI
+import SwiftUI
 class ScheduleViewModel: ObservableObject {
     @Published var schedule: [ScheduleItem] = []
+    @Published var addedImages: [UIImage] = []
     @Published var categories: [Category] = [
   
         Category(
@@ -25,7 +27,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "Trips",
-            image: "trip",
+            image: "routin",
             items: [
                 ScheduleItem(id: UUID(), name: "resturant", image: "trip1"),
                 ScheduleItem(id: UUID(), name: "Park", image: "trip2"),
@@ -40,7 +42,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "Personal cleaning",
-            image: "booth",
+            image: "booth 2",
             items: [
                 ScheduleItem(id: UUID(), name: "Shower", image: "clean1"),
                 ScheduleItem(id: UUID(), name: "Hair Styling", image: "clean2"),
@@ -55,7 +57,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "Animals",
-            image: "cuts",
+            image: "cuts 2",
             items: [
                 ScheduleItem(id: UUID(), name: "Bird", image: "animal1"),
                 ScheduleItem(id: UUID(), name: "Camel", image: "animal2"),
@@ -74,7 +76,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "Meals",
-            image: "brunch",
+            image: "brunch 2",
             items: [
                 ScheduleItem(id: UUID(), name: "Noodles", image: "meal1"),
                 ScheduleItem(id: UUID(), name: "Rice and chicken", image: "meal2"),
@@ -101,7 +103,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
             id: UUID(),
             name: "Transport",
-            image: "cars",
+            image: "cars 2",
             items: [
                 ScheduleItem(id: UUID(), name: "Submarine", image: "trans1"),
                 ScheduleItem(id: UUID(), name: "Train", image: "trans2"),
@@ -117,7 +119,7 @@ class ScheduleViewModel: ObservableObject {
         Category(
                     id: UUID(),
                     name: "wearings",
-                    image: "cloth",
+                    image: "cloth 2",
                     items: [
                 ScheduleItem(id: UUID(), name: "Wearing Shirt", image: "dress1"),
                 ScheduleItem(id: UUID(), name: "Wearing Shirt", image: "dress2"),
@@ -149,6 +151,70 @@ class ScheduleViewModel: ObservableObject {
         }
         let newItem = ScheduleItem(id: UUID(), name: itemName, image: imageName)
         categories[index].items.append(newItem)
+    }
+    
+ 
+    
+    func addImage(_ image: UIImage){
+        addedImages.append(image)
+        
+        let newItem = ScheduleItem(id: UUID(), name: "New Item", image: "image_placeholder")
+               schedule.append(newItem)
+        
+        print("Image added, total: \(schedule.count)")
+    }
+    
+    func addItem(_ item: ScheduleItem) {
+        if !schedule.contains(where: { $0.id == item.id }) {
+            schedule.append(item)
+        }
+    }
+    
+    
+    func colorForCategory(_ category: Category) -> Color {
+        switch category.name {
+        case "Daily Routine":
+              return .روتينيومي
+          case "Trips":
+              return .رحلاتترفيهية
+          case "Personal cleaning":
+              return .النظافةالشخصية
+          case "Animals":
+              return .الحيوانات
+          case "Meals":
+              return .الطعام
+          case "Puplic":
+              return .مرافقعامة
+          case  "Transport" :
+              return .المواصلات
+          case "wearings":
+              return .الملابس
+          default:
+              return .gray
+        }
+    }
+    
+    func textColorForCategory(_ category: Category) -> Color {
+        switch category.name {
+               case "Daily Routine":
+                   return .روتينيومي
+               case "Trips":
+                   return .رحلاتترفيهية
+               case "Personal cleaning":
+                   return .النظافةالشخصية
+               case "Animals":
+                   return .الحيوانات
+               case  "Meals":
+                   return .الطعام
+               case "Puplic":
+                   return .مرافقعامة
+               case "Transport":
+                   return .المواصلات
+               case "wearings":
+                   return .الملابس
+               default:
+                   return .gray
+        }
     }
 
 }

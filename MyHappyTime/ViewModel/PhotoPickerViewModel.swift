@@ -9,29 +9,21 @@ import PhotosUI
 @MainActor
 
 final class PhotoPickerViewModel: ObservableObject {
-    @Published var selectedImage: UIImage? = nil
-    @Published var imageSelection: PhotosPickerItem? = nil{
-        
+    @Published var selectedImages: [UIImage] = []
+    @Published var imageSelection: [PhotosPickerItem] = [] {
         didSet {
-            setImage(from: imageSelection)
+            loadImages(from: imageSelection)
         }
     }
     
-    
-    func setImage(from selection: PhotosPickerItem?){
-        guard let selection else { return }
+    func loadImages(from selections: [PhotosPickerItem]) {
         Task {
-            if let data = try? await selection.loadTransferable(type: Data.self){
-                if let uiImage = UIImage(data: data) {
-                    selectedImage = uiImage
-                    return
+            for selection in selections {
+                if let data = try? await selection.loadTransferable(type: Data.self),
+                   let uiImage = UIImage(data: data) {
+                    selectedImages.append(uiImage) 
                 }
             }
         }
-        
     }
-    
 }
-
-
-

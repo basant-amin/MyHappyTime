@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import PhotosUI
 
 struct ScheduleItem: Identifiable {
     let id: UUID
@@ -27,4 +27,19 @@ class Category: Identifiable {
         self.items = items
     }
     
+}
+
+class CustomImagePicker: Identifiable {
+    let id: UUID
+    var name: String
+    var image: UIImage?
+    
+    
+    init(id: UUID = UUID(), name: String, image: UIImage?) {
+        self.id = id
+        self.name = name
+        self.image = image
+    }
+    
+
 }

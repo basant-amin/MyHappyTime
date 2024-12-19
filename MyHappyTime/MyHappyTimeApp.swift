@@ -12,6 +12,7 @@ struct MyHappyTimeApp: App {
     var body: some Scene {
         WindowGroup {
             MainPageView()
+//            CustomPhotoPickView(scheduleViewModel:  ScheduleViewModel())
         }
     }
 }
