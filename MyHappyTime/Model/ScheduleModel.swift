@@ -7,15 +7,23 @@
 
 import Foundation
 import PhotosUI
+import SwiftData
 
-struct ScheduleItem: Identifiable {
-    let id: UUID
+@Model
+class ScheduleItem: Identifiable {
+    var id: UUID
     var name: String
     var image: String
+    init(id: UUID, name: String, image: String) {
+        self.id = id
+        self.name = name
+        self.image = image
+    }
 }
 
+@Model
 class Category: Identifiable {
-    let id: UUID
+    var id: UUID
     var name: String
     var image: String
     var items: [ScheduleItem]
@@ -29,17 +37,20 @@ class Category: Identifiable {
     
 }
 
+@Model
 class CustomImagePicker: Identifiable {
-    let id: UUID
+    var id: UUID
+    var imageData: Data?
     var name: String
-    var image: UIImage?
-    
-    
-    init(id: UUID = UUID(), name: String, image: UIImage?) {
-        self.id = id
-        self.name = name
-        self.image = image
-    }
-    
 
+    init(id: UUID = UUID(), imageData: Data?,  name: String) {
+        self.id = id
+        self.imageData = imageData
+        self.name = name
+    }
+
+    var image: UIImage? {
+        guard let imageData else { return nil }
+        return UIImage(data: imageData)
+    }
 }

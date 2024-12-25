@@ -19,7 +19,8 @@ struct SearchBar: View {
                     .foregroundColor(.gray)
                     .padding(.leading, 10)
                 
-                TextField("البحث", text: $text)
+                TextField( "Search", text: $text)
+                    .font(.custom("Cairo-Medium", size: 16))
                     .padding(10)
                     .cornerRadius(10)
                     .accentColor(.blue)

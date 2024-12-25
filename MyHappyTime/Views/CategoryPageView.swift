@@ -4,36 +4,34 @@
 //
 //  Created by basant amin bakir on 07/12/2024.
 //
-
 import SwiftUI
 
 struct CategoryPageView: View {
     @StateObject var viewModel = ScheduleViewModel()
 
     let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible(), spacing: 20),
+        GridItem(.flexible(), spacing: 20)
     ]
     
-
-
     var body: some View {
-        NavigationView {
+        GeometryReader { geometry in
             ZStack {
                 Color.slight
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    Text("Photo Categories")
-                        .font(.custom("Cairo-Medium", size: 30))
-                        .padding()
+                    // العنوان
+                    Text("Categories")
+                        .font(.custom("Cairo-Medium", size: geometry.size.width > 600 ? 28 : 20))
+                        .padding(.top, geometry.size.height * 0.0)
                     
                     Divider()
-                        .frame(width: 350, height: 1.8)
-                        .background(Color.sblue)
-
-                    Spacer()
-
+                        .frame(width: geometry.size.width * 0.8, height: 2)
+                        .background(Color.mainBlue)
+                        .padding(.bottom, geometry.size.height * 0.0)
+                    
+                    // المحتوى
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(viewModel.categories) { category in
@@ -42,46 +40,50 @@ struct CategoryPageView: View {
                                         Image(category.image)
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 100, height: 50)
-                                            .cornerRadius(18)
+                                            .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.1)
+                                            .cornerRadius(10)
+                                        
                                         Text(category.name)
-                                            .font(.custom("Cairo-Medium", size: 14))
-                                            .fontWeight(.heavy)
+                                            .font(.custom("Cairo-Medium", size: geometry.size.width > 600 ? 16 : 14))
                                             .foregroundColor(viewModel.textColorForCategory(category))
-                                            .padding([.top, .bottom], 0.5)
                                     }
                                     .padding()
-                                    .cornerRadius(20)
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.white)
+                                    .cornerRadius(15)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(viewModel.colorForCategory(category), lineWidth: 3)
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(viewModel.colorForCategory(category), lineWidth: 2)
                                     )
                                 }
                             }
                         }
-                        .padding()
-                    }
-
-                    NavigationLink(
-                        destination:CustomPhotoPickView(scheduleViewModel: viewModel)
-                    ) {
-                        HStack {
+                        .padding(.horizontal, 20)
                         
-                            Text("Custom Image")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(.رحلاتترفيهية)
+                        // زر صور مخصصة
+                        NavigationLink(destination: CustomPhotoPickView(scheduleViewModel: viewModel)) {
+                            HStack {
+                                Image(systemName: "photo.on.rectangle")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.blue)
+                                
+                                Text("Custom Phote")
+                                    .font(.custom("Cairo-Medium", size: 20))
+                                    .foregroundColor(.blue)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .cornerRadius(15)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
                         }
-                        .padding()
-                        .frame(maxWidth: 325, maxHeight: 70)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.رحلاتترفيهية, lineWidth: 3)
-                        )
+                        .padding(.vertical, 10)
                     }
-                    .padding([.top, .bottom], 20)
                 }
+                .padding(.horizontal, geometry.size.width > 600 ? 40 : 16)
             }
         }
     }
