@@ -9,7 +9,7 @@ import PhotosUI
 @MainActor
 
 final class PhotoPickerViewModel: ObservableObject {
-    @Published var selectedImages: [UIImage] = []
+    @Published var selectedImages: [CustomImagePicker] = []
     @Published var imageSelection: [PhotosPickerItem] = [] {
         didSet {
             loadImages(from: imageSelection)
@@ -17,13 +17,18 @@ final class PhotoPickerViewModel: ObservableObject {
     }
     
     func loadImages(from selections: [PhotosPickerItem]) {
-        Task {
-            for selection in selections {
-                if let data = try? await selection.loadTransferable(type: Data.self),
-                   let uiImage = UIImage(data: data) {
-                    selectedImages.append(uiImage) 
+            Task {
+                for selection in selections {
+                    if let data = try? await selection.loadTransferable(type: Data.self) {
+                        let newImage = CustomImagePicker(
+                            imageData: data,
+                            name: "any"
+                        )
+                        selectedImages.append(newImage)
+                    }
                 }
             }
         }
+    
+    
     }
-}

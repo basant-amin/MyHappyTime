@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct MyHappyTimeApp: App {
+    @Environment(\.modelContext) var modelContext
     var body: some Scene {
         WindowGroup {
             MainPageView()
-//            CustomPhotoPickView(scheduleViewModel:  ScheduleViewModel())
-        }
+
+        }        .modelContainer(for: [ScheduleItem.self, Category.self, CustomImagePicker.self])
     }
 }

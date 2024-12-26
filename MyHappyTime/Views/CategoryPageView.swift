@@ -9,14 +9,10 @@ import SwiftUI
 
 struct CategoryPageView: View {
     @StateObject var viewModel = ScheduleViewModel()
-
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-
-
     var body: some View {
         NavigationView {
             ZStack {

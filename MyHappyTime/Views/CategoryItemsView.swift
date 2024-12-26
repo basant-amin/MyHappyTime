@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct CategoryItemsView: View {
+    @Environment(\.modelContext) var modelContext
     var category: Category
     @ObservedObject var scheduleViewModel: ScheduleViewModel
     @State private var searchText = ""
@@ -42,7 +43,7 @@ struct CategoryItemsView: View {
                                         .frame(width: 100, height: 120)
                                         .padding(1)
                                         .onTapGesture {
-                                            scheduleViewModel.addItem(item)
+                                           addItem(item,  modelContext: modelContext)
                                         }
                                     
                                     Text(item.name)
@@ -76,6 +77,27 @@ struct CategoryItemsView: View {
         }
         
     }
+    
+    
+    
+    
+    func addItem(_ item: ScheduleItem, modelContext: ModelContext) {
+        if !scheduleViewModel.schedule.contains(where: { $0.id == item.id }) {
+            scheduleViewModel.schedule.append(item)
+            modelContext.insert(item)
+            
+            do{
+                try modelContext.save()
+                
+            }catch {
+                print("Error saving context: \(error)")
+            }
+            
+        }
+    }
+    
+    
+    
 }
 
 

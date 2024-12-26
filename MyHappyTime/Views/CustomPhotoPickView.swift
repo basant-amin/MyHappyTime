@@ -7,8 +7,10 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftData
 
 struct CustomPhotoPickView: View {
+    @Environment(\.modelContext) var modelContext
     let columnadaptive: [GridItem] = [
         GridItem(.adaptive(minimum: 160), spacing: 15)
     ]
@@ -25,33 +27,36 @@ struct CustomPhotoPickView: View {
              Text("Photo Picker Grid")
                  .font(.title)
                  .bold()
-             
              LazyVGrid(columns: columnadaptive, spacing: 15) {
-                 ForEach(photoModel.selectedImages, id: \.self) { image in
-                     ZStack {
-                         Image(uiImage: image)
-                             .resizable()
-                             .scaledToFill()
-                             .frame(width: 160, height: 160)
-                             .cornerRadius(10)
-                             .clipped()
-                             .opacity(scheduleViewModel.addedImages.contains(image) ? 0.5 : 1.0)
-                             .onTapGesture {
-                                 if !scheduleViewModel.addedImages.contains(image) {
-                                     scheduleViewModel.addImage(image)
-                                 }
-                             }
-                         
-                         if scheduleViewModel.addedImages.contains(image) {
-                             Image(systemName: "checkmark.circle.fill")
+                 ForEach(photoModel.selectedImages, id: \.id) { image in
+                     if let uiImage = image.image {
+                         ZStack {
+                             Image(uiImage: uiImage)
                                  .resizable()
-                                 .foregroundColor(.white)
-                                 .frame(width: 30, height: 30)
-                                 .offset(x: 60, y: -60)
+                                 .scaledToFill()
+                                 .frame(width: 160, height: 160)
+                                 .cornerRadius(10)
+                                 .clipped()
+                                 .onTapGesture {
+                                     if !scheduleViewModel.addedImages.contains(where: { $0.id == image.id }) {
+                                         addImage(image, modelContext: modelContext)
+                                     }
+                                 }
+                             
+                             if scheduleViewModel.addedImages.contains(where: { $0.id == image.id }) {
+                                 Image(systemName: "checkmark.circle.fill")
+                                     .resizable()
+                                     .foregroundColor(.white)
+                                     .frame(width: 30, height: 30)
+                                     .offset(x: 60, y: -60)
+                             }
                          }
                      }
                  }
              }
+
+
+
              .padding()
              
              PhotosPicker(selection: $photoModel.imageSelection, matching: .images, photoLibrary: .shared()) {
@@ -77,6 +82,60 @@ struct CustomPhotoPickView: View {
      }
             }
     }
+    
+    
+    func addImage(_ image: CustomImagePicker, modelContext: ModelContext) {
+        if !scheduleViewModel.addedImages.contains(where: { $0.id == image.id }) {
+            
+            scheduleViewModel.addedImages.append(image)
+            modelContext.insert(image)
+            
+            do{
+                try modelContext.save()
+            }catch let error{
+                print("Error saving context: \(error)")
+            }
+            let scheduleItem = ScheduleItem(
+                        id: image.id,
+                        name: image.name,
+                        image: image.id.uuidString
+                    )
+            scheduleViewModel.schedule.append(scheduleItem)
+            modelContext.insert(scheduleItem)
+            do{
+                try modelContext.save()
+            }catch let error{
+                print("Error saving context: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    
+//    func addImage(_ image: CustomImagePicker, modelContext: ModelContext) {
+//        if !scheduleViewModel.addedImages.contains(where: { $0.id == image.id }) {
+//
+//            scheduleViewModel.addedImages.append(image)
+//            modelContext.insert(image)
+//
+//            let scheduleItem = ScheduleItem(
+//                id: image.id,
+//                name: image.name,
+//                image: image.id.uuidString
+//            )
+//            scheduleViewModel.schedule.append(scheduleItem)
+//            modelContext.insert(scheduleItem)
+//
+//            do {
+//                try modelContext.save()
+//            } catch let error {
+//                print("Error saving context: \(error)")
+//            }
+//        }
+//    }
+
+    
 }
 
 

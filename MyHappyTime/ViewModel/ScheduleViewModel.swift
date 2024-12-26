@@ -8,9 +8,12 @@
 import Foundation
 import PhotosUI
 import SwiftUI
+import SwiftData
 class ScheduleViewModel: ObservableObject {
+    @Environment(\.modelContext) var modelContext
     @Published var schedule: [ScheduleItem] = []
-    @Published var addedImages: [UIImage] = []
+    @Published var addedImages: [CustomImagePicker] = []
+//    @Published var addedImages: [UIImage] = []
     @Published var categories: [Category] = [
   
         Category(
@@ -134,6 +137,36 @@ class ScheduleViewModel: ObservableObject {
                 )
     ]
     
+    
+    
+  
+
+    func addImage(_ image: CustomImagePicker, modelContext: ModelContext) {
+        if !addedImages.contains(where: { $0.id == image.id }) {
+            
+            addedImages.append(image)
+            modelContext.insert(image)
+            
+            do{
+                try modelContext.save()
+            }catch let error{
+                print("Error saving context: \(error)")
+            }
+            let scheduleItem = ScheduleItem(
+                        id: image.id,
+                        name: image.name,
+                        image: image.id.uuidString
+                    )
+                    schedule.append(scheduleItem)
+            modelContext.insert(scheduleItem)
+            do{
+                try modelContext.save()
+            }catch let error{
+                print("Error saving context: \(error)")
+            }
+        }
+    }
+    
     func addCategory(name: String, imageName: String, items: [ScheduleItem] = []) {
         let newCategory = Category(
             id: UUID(),
@@ -155,20 +188,28 @@ class ScheduleViewModel: ObservableObject {
     
  
     
-    func addImage(_ image: UIImage){
-        addedImages.append(image)
-        
-        let newItem = ScheduleItem(id: UUID(), name: "New Item", image: "image_placeholder")
-               schedule.append(newItem)
-        
-        print("Image added, total: \(schedule.count)")
-    }
+//    func addImage(_ image: UIImage){
+//        addedImages.append(image)
+//
+//        let newItem = ScheduleItem(id: UUID(), name: "New Item", image: "image_placeholder")
+//               schedule.append(newItem)
+//
+//        print("Image added, total: \(schedule.count)")
+//    }
     
-    func addItem(_ item: ScheduleItem) {
-        if !schedule.contains(where: { $0.id == item.id }) {
-            schedule.append(item)
-        }
-    }
+//    func addItem(_ item: ScheduleItem, modelContext: ModelContext) {
+//        if !schedule.contains(where: { $0.id == item.id }) {
+//            schedule.append(item)
+//            modelContext.insert(item)
+//
+//            do{
+//                try modelContext.save()
+//            }catch {
+//                print("Error saving context: \(error)")
+//            }
+//
+//        }
+//    }
     
     
     func colorForCategory(_ category: Category) -> Color {

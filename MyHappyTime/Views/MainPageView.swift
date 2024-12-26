@@ -35,7 +35,7 @@ struct MainPageView: View {
                     Spacer(minLength: 50)
 
                     VStack(spacing: 16) {
-                        NavigationLink(destination: CategoryPageView()) {
+                        NavigationLink( destination: SchedulePageView(scheduleViewModel: scheduleViewModel)) {
                             Text(" View The Schedule")
                                 .frame(width: 354, height: 52)
                                 .background(Color.mainBlue)
@@ -56,7 +56,7 @@ struct MainPageView: View {
                     .padding()
                 }
             }
-        }    
+        }
     }
 }
 
